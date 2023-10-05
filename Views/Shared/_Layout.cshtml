@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - tomreese_blog_aspnet_core_mvc</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+
+<body class="text-center text-white">
+    <div class="cover-container d-flex h-100 w-100 p-3 mx-auto flex-column">
+
+        <header class="masthead mb-auto text-center">
+            @{
+                await Html.RenderPartialAsync("_NavbarLinks");
+            }
+        </header>
+
+        <main role="main" class="inner cover">
+            @RenderBody()
+        </main>
+
+        @{
+            await Html.RenderPartialAsync("_Footer");
+        }
+    </div>
+
+    <script src="~/lib/jquery/jquery-3.7.1.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

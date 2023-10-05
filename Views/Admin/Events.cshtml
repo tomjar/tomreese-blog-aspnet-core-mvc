@@ -1,0 +1,32 @@
+@model EventsViewModel
+   
+    <div class="center">
+     <h1>@Model.title</h1>
+    <table class="center">
+      <caption>
+        Important events that have occurred recently
+      </caption>
+      <thead>
+        <tr>
+          <th>Created</th>
+          <th>IP Address</th>
+          <th>Category</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        @Model.events.forEach(function(item){
+          <tr>
+            <td>@item.createtimestamp</td>
+            <td>@item.ip_address</td>
+            <td>@item.category</td>
+                        <td>
+            <details>
+              @item.description
+              </details>
+            </td>
+          </tr>
+        })
+      </tbody>
+    </table>
+    </div>

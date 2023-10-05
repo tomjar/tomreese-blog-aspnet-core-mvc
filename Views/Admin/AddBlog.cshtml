@@ -1,0 +1,60 @@
+
+    @model AddBlogViewModel
+
+    <h1>@Model.Title</h1>
+
+    <form method="post" action="/admin/blog/add">
+      <div class="row">
+        <div class="col">
+          <input type="submit" value="Add new post" class="btn btn-success" />
+        </div>
+      </div>
+
+      <div class="clearfix"><br /></div>
+
+      <div class="row">
+        <div class="col">
+          <label for="">name:</label>
+          <input type="text" class="form-control" name="name" value="" placeholder="name" />
+        </div>
+        <div class="col">
+          <label for="category">category:</label>
+          <select class="form-control" name="category">
+            @Model.categories.forEach(function(item){
+                <option value="@item.value">@item.name</option>
+            })
+          </select>
+        </div>
+        <div class="col">
+          <label>header:</label>
+          <br />
+          <input type="text" class="form-control" name="header" value='' placeholder="header" />
+        </div>
+      </div>
+
+      <div class="clearfix"><br /></div>
+
+      <div class="row">
+        <div class="col">
+          <label>description:</label>
+          <textarea type="text" class="form-control" name="description" placeholder="description"></textarea>
+        </div>
+      </div>
+
+      <div class="clearfix"><br /></div>
+
+      <div class="row">
+        <div class="col">
+            <label>body:</label>
+            <textarea type="text" class="form-control trumbowyg" name="body" rows="25" placeholder="post content"></textarea>
+        </div>
+      </div>
+
+    </form>
+    <script>
+      $( document ).ready(function() {
+        $('.trumbowyg').trumbowyg({
+          tagsToRemove: ['script', 'style']
+        });
+      });
+    </script>

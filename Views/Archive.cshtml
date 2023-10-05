@@ -1,0 +1,17 @@
+@model ArchiveViewModel
+
+<hr />
+<h1 class="text-white">Archive</h3>
+<div class="archive text-white">
+@Model.yearAndBlogs.forEach(function(item){
+  <strong>@item.year</strong>
+  <br />
+      @item.blogs.forEach(function(p){
+        <p title="@p.description">
+          <a href="/blog/@p.name">
+            <small>@p.header</small>
+          </a>
+        </p>
+      })
+})
+</div>

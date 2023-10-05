@@ -1,0 +1,76 @@
+@model EditBlogViewModel
+
+    <h1>@Model.title</h1>
+    <form method="post" action="/admin/blog/update" id="formUpdatePost">
+      <input id="id" name="id" type="hidden" value='@Model.blog.id' />
+
+      <div class="row">
+        <div class="col">
+          <input type="submit" value="Save changes" class="btn btn-primary" />
+        </div>
+      </div>
+
+      <div class="clearfix"><br /></div>
+
+      <div class="row">
+        <div class="col">
+          <label for="">name(view file name):</label>
+          <span name="name">@Model.name</span>
+        </div>
+        <div class="col">
+          <label for="postCategory">category:</label>
+          <select class="form-control" name="category">
+            @Model.blog.categories.forEach(function(item){
+              if (item.name === Model.blog.category){
+                <option value="@item.value" selected>@item.name</option>
+              }else{
+                <option value="@item.value">@item.name</option>
+              }
+            })
+          </select>
+        </div>
+        <div class="col">
+          <label>header:</label>
+          <br />
+          <input type="text" class="form-control" name="header" value='@Model.blog.header' placeholder="header" />
+        </div>
+        <div class="col">
+          <label for="ispublished">publish post?:</label>
+            <select class="form-control" name="ispublished">
+              @if (Model.blog.ispublished){
+              <option value="1" selected>Yes</option>
+              <option value="0">No</option>
+              }else{
+              <option value="1">Yes</option>
+              <option value="0" selected>No</option>
+              }
+            </select>
+        </div>
+      </div>
+
+      <div class="clearfix"><br /></div>
+
+      <div class="row">
+        <div class="col">
+          <label>Description:</label>
+          <textarea type="text" class="form-control" name="description" placeholder="description">@Model.blog.description</textarea>
+        </div>
+      </div>
+
+      <div class="clearfix"><br /></div>
+
+      <div class="row">
+        <div class="col">
+            <label>Body:</label>
+            <textarea type="text" class="form-control trumbowyg" name="body" rows="25" placeholder="post content">@Model.blog.body</textarea>
+        </div>
+      </div>
+    </form>
+
+    <script>
+      $( document ).ready(function() {
+        $('.trumbowyg').trumbowyg({
+          tagsToRemove: ['script', 'style']
+        });
+      });
+    </script>

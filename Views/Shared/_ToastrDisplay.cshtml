@@ -1,0 +1,12 @@
+  @model ToastrDisplayViewModel
+  <script>
+    $( document ).ready(function() {
+
+      // let jsonToastrMessages = JSON.parse('html.raw(model.toastr_messages)');
+      const jsonToastrMessages == [];
+      jsonToastrMessages.forEach(function(item){
+        Utility.showToastrMessage(item.type, item.msg);
+      })
+    })
+
+  </script>

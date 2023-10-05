@@ -1,0 +1,48 @@
+
+@model BlogsViewModel
+
+<div class="container">
+    <h1>@Model.title</h1>
+    <table>
+      <caption>
+        All Blogs active and inactive
+      </caption>
+      <tr>
+        <th>Header</th>
+        <th>Created</th>
+        <th>Updated</th>
+        <th>Published?</th>
+        <th>Category</th>
+        <th>Actions</th>
+      </tr>
+
+    @Model.blogs.forEach(function(item){
+      <tr>
+	      <td>@item.header</td>
+        <td>@item.createtimestamp</td> 
+        <td>@item.modifytimestamp</td>
+        <td>@item.ispublished</td>
+        <td>@item.category</td>
+        <td>
+          <ul>
+            <li>
+              <a href='/admin/blog/update/@item.id'>Edit</a>
+            </li>
+              @if (item.ispublished){
+              <li>
+                <a href="/admin/blog/deactivate/@item.id">Deactivate</a>
+              </li>
+            }else{
+              <li>
+                <a href="/admin/blog/activate/@item.id">Activate</a>
+              </li>
+              }
+            <li>
+              <a href="/admin/blog/delete/@item.id">Delete</a>
+            </li>
+          </ul>
+          </td>
+      </tr>
+    })
+      </table>
+      </div>
