@@ -1,7 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using TRBlog.Database;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<TomreeseblogContext>(options => {
+    options.UseSqlite("FileName=tomreeseblog.sqlite");
+});
 
 var app = builder.Build();
 

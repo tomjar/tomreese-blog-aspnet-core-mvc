@@ -1,5 +1,5 @@
 namespace TRBlog.Models.Admin;
 
-public class IndexViewModel{
+public class AdminIndexViewModel{
     
 }

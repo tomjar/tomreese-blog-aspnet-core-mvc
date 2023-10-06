@@ -3,15 +3,18 @@
 <hr />
 <h1 class="text-white">Archive</h3>
 <div class="archive text-white">
-@Model.yearAndBlogs.forEach(function(item){
-  <strong>@item.year</strong>
+@* @{
+  foreach(var item in Model.YearAndBlogs){
+
+ <strong>@item.Key</strong>
   <br />
-      @item.blogs.forEach(function(p){
-        <p title="@p.description">
-          <a href="/blog/@p.name">
-            <small>@p.header</small>
+      foreach(var blog in item.Value){
+        <p title="blog.Description">
+          <a href="/blog/@blog.Name">
+            <small>@blog.Header</small>
           </a>
         </p>
-      })
-})
+      }
+}
+} *@
 </div>

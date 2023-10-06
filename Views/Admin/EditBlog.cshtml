@@ -1,6 +1,6 @@
 @model EditBlogViewModel
 
-    <h1>@Model.title</h1>
+    @* <h1>@Model.title</h1>
     <form method="post" action="/admin/blog/update" id="formUpdatePost">
       <input id="id" name="id" type="hidden" value='@Model.blog.id' />
 
@@ -73,4 +73,4 @@
           tagsToRemove: ['script', 'style']
         });
       });
-    </script>
+    </script> *@
