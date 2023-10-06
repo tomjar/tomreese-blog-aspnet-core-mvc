@@ -1,13 +1,13 @@
-﻿@model TrBlog.Models.IndexViewModel
+﻿@model IndexViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
 
-    <h1 class="text-white" title="last 30 days">@Model.title</h1>
+    @* <h1 class="text-white" title="last 30 days">@Model.Title</h1>
 
-  @if(Model.lastThirtyDaysBlogs && Model.lastThirtyDaysBlogs.length > 0){
+  @if(Model.LastThirtyDaysBlogs && Model.LastThirtyDaysBlogs.length > 0){
     <div class="d-flex flex-wrap text-white flex-row bd-highlight mb-3">
-      @Model.lastThirtyDaysBlogs.forEach(function(item){
+      @Model.LastThirtyDaysBlogs.forEach(function(item){
           <div class="p-1 bd-highlight">
           <div class="card">
             <div class="card-body">
@@ -39,6 +39,6 @@
       </div>
   }else{
     <div class="jumbotron container text-white ml-auto">
-      <pre>@Model.greeting</pre>
+      <pre>@Model.Greeting</pre>
     </div>
-  }
+  } *@
