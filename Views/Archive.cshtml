@@ -4,7 +4,7 @@
 
 <h1 class="text-white">Archive</h1>
 
-<div class="htmx-spinner spinner-grow" role="status">
-  <span class="sr-only">Loading...</span>
-</div>
+<div hx-get="/Archive/YearAndBlogs" hx-trigger="load">
+  <div class="htmx-spinner spinner-grow" role="status"></div>
+  </div>
 </div>

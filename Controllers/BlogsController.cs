@@ -19,11 +19,23 @@ public class BlogsController : Controller
     }
 
 
-    public IActionResult Index()
+    [Route("Blog")]
+    [Route("Blog/Index")]
+    [Route("Blog/{name}")]
+    [Route("Blogs")]
+    [Route("Blogs/Index")]
+    [Route("Blogs/{name}")]
+    public IActionResult Index(string name)
     {
-        return View("~/Views/Blog.cshtml");
+        BlogViewModel blogViewModel = new BlogViewModel()
+        {
+            BlogName = name
+        };
+
+        return View("~/Views/Blog.cshtml", blogViewModel);
     }
 
+    [Route("Blogs/GetBlogByName/{name}")]
     [HttpGet]
     public async Task<ContentResult> GetBlogByName(string name)
     {
@@ -32,30 +44,23 @@ public class BlogsController : Controller
         string blogMissing = missingCow.Say("This is not the blog you are looking for.", "Oo");
         StringBuilder blogHtml = new StringBuilder();
 
-        if (blog != null)
+        if (blog?.Id > 0)
         {
+            // <span class="badge text-bg-dark">Dark</span>
+            
             blogHtml.AppendFormat("<h1 class='text-white'>{0}</h1>", blog.Header);
-            blogHtml.Append("<ul>");
-            blogHtml.Append("<li>");
-            blogHtml.AppendFormat("<img src='/images/{0}' alt='' width='75px' height='75px' />", blog.Category);
-            blogHtml.Append("</li>");
-            blogHtml.Append("<li>");
-            blogHtml.AppendFormat("<span class='text-small'>by <a href='/about'>Thomas Reese</a></span>");
-            blogHtml.Append("</li>");
-            blogHtml.Append("<li class='list-group-item border-0 text-white'>");
-            blogHtml.Append("<span style='font-size:xx-small;'>");
-            blogHtml.AppendFormat("<i>first published on @Model.createtimestamp UTC</i>");
-            blogHtml.Append("<br />");
+            blogHtml.AppendFormat("<span class='badge text-bg-dark bg-dark'><img src='/images/{0}.png' alt='' width='15px' height='15px' /></span>",blog.Category);
+            blogHtml.AppendFormat("<span class='badge text-bg-dark bg-dark'>by <a href='/about'>{0}</a></span>", "Thomas Reese");
+            blogHtml.AppendFormat("<span class='badge text-bg-dark bg-dark'><i>first published on {0} UTC</i></span>", blog.Createtimestamp);
+           
+
             if (blog.Modifytimestamp.HasValue)
             {
-                blogHtml.AppendFormat("<i>last updated on {0} UTC</i>", blog.Modifytimestamp);
+                 blogHtml.AppendFormat("<span class='badge text-bg-dark bg-dark'><i>last updated on {0} UTC</i></span>",blog.Modifytimestamp.Value);
             }
-            blogHtml.Append("</span>");
-            blogHtml.Append("</li>");
-            blogHtml.Append("</ul>");
+
             blogHtml.Append("<div class='text-white shadow-lg rounded flex-fill flex-xl-grow-1'>");
             blogHtml.Append(blog.Body);
-            blogHtml.Append("</p>");
         }
         else
         {
@@ -71,6 +76,7 @@ public class BlogsController : Controller
         };
     }
 
+    [Route("Blogs/LastThirtyDaysBlogs")]
     [HttpGet]
     public async Task<ContentResult> LastThirtyDaysBlogs()
     {

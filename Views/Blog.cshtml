@@ -1,10 +1,9 @@
+@model BlogViewModel
 @{
   ViewData["Title"] = "Blog";
 }
 
-@* TODO: may make sense to use a view model here*@
-@* <div hx-get="/Blog/name" hx-trigger="load">
-<div class="htmx-spinner spinner-grow" role="status">
-  <span class="sr-only">Loading...</span>
+
+<div hx-get="/Blogs/GetBlogByName/@Model.BlogName" hx-trigger="load">
+<div class="htmx-spinner spinner-grow" role="status"></div>
 </div>
-</div> *@
