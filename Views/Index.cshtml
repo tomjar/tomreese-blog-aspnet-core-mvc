@@ -1,0 +1,8 @@
+﻿@model CommonViewModel
+@{
+  ViewData["Title"] = "Home Page";
+}
+
+<h1 class="text-white" title="last 30 days">@Model.Title</h1>
+
+<div hx-get="/Blogs/LastThirtyDaysBlogs" hx-trigger="load"></div>

@@ -114,3 +114,8 @@ body {
   display: inline-block;
   text-align: left;
  }
+
+
+ .text-tiny{
+  font-size: xx-small;
+ }

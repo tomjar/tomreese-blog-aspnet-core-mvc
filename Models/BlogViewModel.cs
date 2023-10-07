@@ -1,5 +1,5 @@
 namespace TRBlog.Models;
 
-public class BlogViewModel{
+public class BlogViewModel {
     
 }

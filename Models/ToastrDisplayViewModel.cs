@@ -1,5 +1,5 @@
 namespace TRBlog.Models;
 
-public class ToastrDisplayViewModel{
-    
+public class ToastrDisplayViewModel {
+     
 }

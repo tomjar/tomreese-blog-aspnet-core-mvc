@@ -9,12 +9,9 @@
 
   <ItemGroup>
     <PackageReference Include="Cowsay" Version="1.1.10" />
+    <PackageReference Include="Cowsay.Extensions.DependencyInjection" Version="1.1.10" />
     <PackageReference Include="jQuery" Version="3.7.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.11">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.11" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="7.0.11" />
     <PackageReference Include="toastr" Version="2.1.1" />
     <PackageReference Include="Trumbowyg" Version="1.0.1" />
   </ItemGroup>

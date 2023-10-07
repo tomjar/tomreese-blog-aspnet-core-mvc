@@ -4,18 +4,26 @@ using TRBlog.Models;
 
 namespace TRBlog.Controllers;
 
-public class HomeController : Controller
+public class IndexController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly ILogger<IndexController> _logger;
 
-    public HomeController(ILogger<HomeController> logger)
+
+    public IndexController(ILogger<IndexController> logger)
     {
         _logger = logger;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return View();
+
+        CommonViewModel model = new CommonViewModel()
+        {
+            Title = "Welcome to tomreese.blog!",
+            IsAuthenticated = false
+        };
+
+        return View("~/Views/Index.cshtml", model);
     }
 
     public IActionResult Privacy()

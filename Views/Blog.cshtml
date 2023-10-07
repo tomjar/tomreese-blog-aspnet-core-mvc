@@ -1,24 +1,10 @@
-@model BlogViewModel
-@* 
-    <h1 class="text-white">@Model.title</h1>
+@{
+  ViewData["Title"] = "Blog";
+}
 
-    <ul>
-      <li>
-        <img src='@Model.imageUrl' alt='' width='75px' height='75px' />
-      </li>
-      <li>
-          <span style="font-size:xx-small">by <a href="/about">Thomas Reese</a></span>
-      </li>
-      <li class="list-group-item border-0 text-white">
-      <span style="font-size:xx-small;">
-          <i>first published on @Model.createtimestamp UTC</i>
-          <br />
-        @if (Model.modifytimestamp) {
-        <i>last updated on @Model.modifytimestamp UTC</i>
-        }
-        </span>
-      </li>
-      </ul>
-      <div class="text-white shadow-lg rounded flex-fill flex-xl-grow-1">
-        @html.raw(Model.body)
-      </p> *@
+@* TODO: may make sense to use a view model here*@
+@* <div hx-get="/Blog/name" hx-trigger="load">
+<div class="htmx-spinner spinner-grow" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+</div> *@

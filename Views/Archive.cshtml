@@ -1,20 +1,10 @@
-@model ArchiveViewModel
-
-<hr />
-<h1 class="text-white">Archive</h3>
-<div class="archive text-white">
-@* @{
-  foreach(var item in Model.YearAndBlogs){
-
- <strong>@item.Key</strong>
-  <br />
-      foreach(var blog in item.Value){
-        <p title="blog.Description">
-          <a href="/blog/@blog.Name">
-            <small>@blog.Header</small>
-          </a>
-        </p>
-      }
+@{
+  ViewData["Title"] = "Archive";
 }
-} *@
+
+<h1 class="text-white">Archive</h1>
+
+<div class="htmx-spinner spinner-grow" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
 </div>

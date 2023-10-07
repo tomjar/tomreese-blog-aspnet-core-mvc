@@ -1,5 +1,5 @@
 namespace TRBlog.Models.Admin;
 
-public class BlogsSettingsViewModel{
+public class BlogsSettingsViewModel {
     
 }
