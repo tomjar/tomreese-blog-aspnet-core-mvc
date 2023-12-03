@@ -1,8 +1,55 @@
 ﻿@model CommonViewModel
 @{
-  ViewData["Title"] = "Home Page";
+  ViewData["Title"] = "Home";
 }
 
 <h1 class="text-white" title="last 30 days">@Model.Title</h1>
+@{
 
-<div hx-get="/Blogs/LastThirtyDaysBlogs" hx-trigger="load"></div>
+  @if (@Model.LastThirtyDaysBlogs.Length > 0)
+  {
+    <div class='d-flex flex-wrap text-white flex-row bd-highlight mb-3'>
+      @foreach (var item in @Model.LastThirtyDaysBlogs)
+      {
+        <div class='p-1 bd-highlight'>
+          <div class='card bg-dark'>
+            <div class='card-body'>
+              <h3 class='card-title'></h3>
+              <span>
+                <a href='/blog/@item.Name' title='@item.Header'>
+                  @item.Header
+                </a>
+              </span>
+              <br />
+              <span class='bg-dark'>
+                <ul class='list-group list-group-horizontal bg-dark'>
+                  <li class='list-group-item border-0 bg-dark'>
+                    <span class='text-tiny text-white'>by <a href='/about'>@item.Author</a></span>
+                  </li>
+                  <li class='list-group-item border-0 bg-dark text-white'>
+                    <i class='text-tiny'>first published on @item.Createtimestamp UTC</i>
+                    <br />
+
+                    @if (@item.Modifytimestamp.HasValue)
+                    {
+                      <i class='text-tiny'>last updated on @item.Modifytimestamp.Value UTC</i>
+                    }
+
+                  </li>
+                </ul>
+              </span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+  else
+  {
+    <div class='jumbotron container text-white ml-auto'>
+      <pre>@Html.Raw(@Model.EmptyGreeting)</pre>
+    </div>
+  }
+
+
+}

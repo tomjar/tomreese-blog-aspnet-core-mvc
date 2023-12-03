@@ -1,48 +1,55 @@
+@model AdminBlogsViewModel
 
-@model BlogsViewModel
+@{
+  ViewData["Title"] = "All Blogs";
+}
 
-@* <div class="container">
-    <h1>@Model.title</h1>
-    <table>
-      <caption>
-        All Blogs active and inactive
-      </caption>
+<div class="container">
+  <h1>All Blogs</h1>
+  <table>
+    <caption>
+      All Blogs active and inactive
+    </caption>
+    <tr>
+      <th>Header</th>
+      <th>Created</th>
+      <th>Updated</th>
+      <th>Published?</th>
+      <th>Category</th>
+      <th>Actions</th>
+    </tr>
+
+    @foreach (var item in @Model.AllBlogs)
+    {
       <tr>
-        <th>Header</th>
-        <th>Created</th>
-        <th>Updated</th>
-        <th>Published?</th>
-        <th>Category</th>
-        <th>Actions</th>
-      </tr>
-
-    @Model.blogs.forEach(function(item){
-      <tr>
-	      <td>@item.header</td>
-        <td>@item.createtimestamp</td> 
-        <td>@item.modifytimestamp</td>
-        <td>@item.ispublished</td>
-        <td>@item.category</td>
+        <td>@item.Header</td>
+        <td>@item.Createtimestamp</td>
+        <td>@item.Modifytimestamp</td>
+        <td>@item.Ispublished</td>
+        <td>@item.Category</td>
         <td>
           <ul>
             <li>
-              <a href='/admin/blog/update/@item.id'>Edit</a>
+              <a href='/admin/blog/update/@item.Id'>Edit</a>
             </li>
-              @if (item.ispublished){
+            @if (@item.Ispublished)
+            {
               <li>
-                <a href="/admin/blog/deactivate/@item.id">Deactivate</a>
+                <a href="/admin/blog/deactivate/@item.Id">Deactivate</a>
               </li>
-            }else{
+            }
+            else
+            {
               <li>
-                <a href="/admin/blog/activate/@item.id">Activate</a>
+                <a href="/admin/blog/activate/@item.Id">Activate</a>
               </li>
-              }
+            }
             <li>
-              <a href="/admin/blog/delete/@item.id">Delete</a>
+              <a href="/admin/blog/delete/@item.Id">Delete</a>
             </li>
           </ul>
-          </td>
+        </td>
       </tr>
-    })
-      </table>
-      </div> *@
+    }
+  </table>
+</div>

@@ -3,7 +3,25 @@
   ViewData["Title"] = "Blog";
 }
 
+<h1 class='text-white'>@Model.Header</h1>
 
-<div hx-get="/Blogs/GetBlogByName/@Model.BlogName" hx-trigger="load">
-<div class="htmx-spinner spinner-grow" role="status"></div>
+<span class='badge text-bg-dark bg-dark'>
+  <img src='@Model.CategoryImageUrl' alt='' width='15px' height='15px' />
+</span>
+
+<span class='badge text-bg-dark bg-dark'>by
+  <a href='/about'>@Model.Author</a>
+</span>
+
+<span class='badge text-bg-dark bg-dark'><i>first published on @Model.Createtimestamp UTC</i></span>
+
+@{
+  if (Model.Modifytimestamp.HasValue)
+  {
+    <span class='badge text-bg-dark bg-dark'><i>last updated on @Model.Modifytimestamp.Value UTC</i></span>
+  }
+}
+
+<div class='text-white shadow-lg rounded flex-fill flex-xl-grow-1'>
+  @Html.Raw(Model.Body)
 </div>

@@ -18,54 +18,40 @@ public class ArchiveController : Controller
         _logger = logger;
     }
 
-    public IActionResult Index()
-    {
-        return View("~/Views/Archive.cshtml");
-    }
-
+    [Route("Archive")]
+    [Route("Archive/Index")]
+    [Route("Archives")]
+    [Route("Archives/Index")]
     [HttpGet]
-    public async Task<ContentResult> YearAndBlogs()
+    public async Task<IActionResult> Index()
     {
-        StringBuilder yearAndBlogsHtml = new StringBuilder();
-
         var yearAndBlogs = await Blog.GetAllArchived();
-        var archiveEmptyCow = await _cattleFarmer.RearCowAsync();
-        string emptyArchive = archiveEmptyCow.Say("Add some blogs! Get to it chop chop!", "Oo");
 
         if (yearAndBlogs.Count() > 0)
         {
-            yearAndBlogsHtml.Append("<div class='archive text-white'>");
-
-            foreach (var item in yearAndBlogs)
+            return View("~/Views/Archive.cshtml", new ArchiveViewModel()
             {
-                yearAndBlogsHtml.AppendFormat("<strong>{0}</strong>", item.Key);
-                yearAndBlogsHtml.Append("<br />");
-                foreach (var blog in item.Value)
-                {
-                    yearAndBlogsHtml.AppendFormat("<p title='{0}'>", blog.Description);
-                    yearAndBlogsHtml.AppendFormat("<a href='/blog/{0}'>", blog.Name);
-                    yearAndBlogsHtml.AppendFormat("<small>{0}</small>", blog.Header);
-                    yearAndBlogsHtml.Append("</a>");
-                    yearAndBlogsHtml.Append("</p>");
-                }
-            }
-
-            yearAndBlogsHtml.Append("</div>");
+                YearAndBlogs = yearAndBlogs
+            });
         }
         else
         {
-            yearAndBlogsHtml.Append("<div class='jumbotron container text-white ml-auto'>");
-            yearAndBlogsHtml.AppendFormat("<pre>{0}</pre>", emptyArchive);
-            yearAndBlogsHtml.Append("</div>");
+            var archiveEmptyCow = await _cattleFarmer.RearCowAsync();
+            string emptyArchive = archiveEmptyCow.Say("Add some blogs! Get to it chop chop!", "Oo");
+
+            StringBuilder emptyArchiveHtml = new StringBuilder();
+            emptyArchiveHtml.Append("<div class='jumbotron container text-white ml-auto'>");
+            emptyArchiveHtml.AppendFormat("<pre>{0}</pre>", emptyArchive);
+            emptyArchiveHtml.Append("</div>");
+
+            return View("~/Views/Archive.cshtml", new ArchiveViewModel()
+            {
+                YearAndBlogs = new Dictionary<int, Blog[]>(),
+                EmptyArchiveMessage = emptyArchiveHtml.ToString()
+
+            });
         }
-
-        return new ContentResult()
-        {
-            Content = yearAndBlogsHtml.ToString(),
-            ContentType = "text/html"
-        };
     }
-
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

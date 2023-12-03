@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using Microsoft.Data.Sqlite;
+using TRBlog.Models;
 
 namespace TRBlog.Database;
 
